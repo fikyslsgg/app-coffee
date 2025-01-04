@@ -1,11 +1,17 @@
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import { Button, Card, Rate, Tag } from "antd";
-import { useEffect } from "react";
+import { Button, Card, Input, Rate, Tag } from "antd";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { useCoffeeStore } from "./model/coffeeStore";
 
 function App() {
 	const { getCoffeeList, coffeeList } = useCoffeeStore();
+	const [text, setText] = useState<string | undefined>("");
+
+	const handleSearcH = (text: string) => {
+		getCoffeeList({ text });
+		setText(text);
+	};
 
 	useEffect(() => {
 		getCoffeeList();
@@ -13,6 +19,11 @@ function App() {
 
 	return (
 		<div className="wrapper">
+			<Input
+				value={text}
+				onChange={(e) => handleSearcH(e.target.value)}
+				placeholder="search"
+			/>
 			<div className="cardsContainer">
 				{coffeeList &&
 					coffeeList.map((coffee) => (
