@@ -1,8 +1,9 @@
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Button, Card, Input, Rate, Tag } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import { useCoffeeStore } from "./model/coffeeStore";
+import { useSearchStore } from "./model/searchStore";
 
 function App() {
 	const {
@@ -15,12 +16,8 @@ function App() {
 		address,
 		setAddress,
 	} = useCoffeeStore();
-	const [text, setText] = useState<string | undefined>("");
 
-	const handleSearcH = (text: string) => {
-		getCoffeeList({ text });
-		setText(text);
-	};
+	const { text, setText } = useSearchStore();
 
 	useEffect(() => {
 		getCoffeeList();
@@ -30,7 +27,7 @@ function App() {
 		<div className="wrapper">
 			<Input
 				value={text}
-				onChange={(e) => handleSearcH(e.target.value)}
+				onChange={(e) => setText(e.target.value)}
 				placeholder="search"
 			/>
 			<div style={{ display: "flex" }}>

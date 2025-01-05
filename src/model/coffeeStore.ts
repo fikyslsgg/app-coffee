@@ -93,3 +93,6 @@ export const useCoffeeStore = create<CoffeeState & CoffeeAction>()(
 		},
 	),
 );
+
+export const getCoffeeList = (params?: GetCoffeeRequestParams) =>
+	useCoffeeStore.getState().getCoffeeList(params);
