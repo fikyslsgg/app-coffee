@@ -7,13 +7,7 @@ import { useUrlParamsStore } from "./helpers/useUrlStorage";
 import { useCoffeeStore } from "./model/coffeeStore";
 
 function App() {
-	const {
-		getCoffeeList,
-		coffeeList,
-
-		params,
-		setParams,
-	} = useCoffeeStore();
+	const { getCoffeeList, coffeeList, params, setParams } = useCoffeeStore();
 
 	useEffect(() => {
 		getCoffeeList(params);
