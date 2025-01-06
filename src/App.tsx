@@ -1,7 +1,8 @@
-import { ShoppingCartOutlined } from "@ant-design/icons";
-import { Button, Card, Input, Rate, Tag } from "antd";
+import { Input } from "antd";
 import { useEffect } from "react";
 import "./App.css";
+import { Cart } from "./components/Cart";
+import { CoffeeCard } from "./components/CoffeeCard";
 import { useUrlParamsStore } from "./helpers/useUrlStorage";
 import { useCoffeeStore } from "./model/coffeeStore";
 
@@ -9,12 +10,7 @@ function App() {
 	const {
 		getCoffeeList,
 		coffeeList,
-		addToCart,
-		cart,
-		clearCart,
-		orderCoffee,
-		address,
-		setAddress,
+
 		params,
 		setParams,
 	} = useCoffeeStore();
@@ -35,53 +31,9 @@ function App() {
 			<div style={{ display: "flex" }}>
 				<div className="cardsContainer">
 					{coffeeList &&
-						coffeeList.map((coffee) => (
-							<Card
-								key={coffee.id}
-								cover={<img src={coffee.image} alt={coffee.name} />}
-								actions={[
-									<Button
-										icon={<ShoppingCartOutlined />}
-										onClick={() => addToCart(coffee)}
-									>
-										{coffee.price}
-									</Button>,
-								]}
-							>
-								<Card.Meta title={coffee.name} description={coffee.subTitle} />
-								<Tag color="purple" style={{ marginTop: 12 }}>
-									{coffee.type}
-								</Tag>
-								<Rate
-									defaultValue={coffee.rating}
-									disabled
-									allowHalf
-									style={{ marginTop: 12 }}
-								/>
-							</Card>
-						))}
+						coffeeList.map((coffee) => <CoffeeCard coffee={coffee} />)}
 				</div>
-				<aside className="cart">
-					<h1>Заказ</h1>
-					{cart && cart.length > 0 ? (
-						<>
-							{cart.map((item, index) => (
-								<span key={index}>{item.name}</span>
-							))}
-							<Input
-								placeholder="адрес"
-								value={address}
-								onChange={(e) => setAddress(e.target.value)}
-							/>
-							<Button onClick={orderCoffee} type="primary" disabled={!address}>
-								Сделать заказ
-							</Button>
-							<Button onClick={clearCart}>Очистить корзину</Button>
-						</>
-					) : (
-						<span>Добавьте напиток</span>
-					)}
-				</aside>
+				<Cart />
 			</div>
 		</div>
 	);
