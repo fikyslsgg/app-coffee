@@ -1,16 +1,16 @@
 import "./App.css";
-import { CoffeList } from "./components/CardList";
+import { CardList } from "./components/CardList";
 import { Cart } from "./components/Cart";
+import { CategoryPicker } from "./components/CategoryPicker";
 import { SearchInput } from "./components/SearchInput";
-import { useUrlParamsStore } from "./helpers/useUrlStorage";
-import { useCoffeeStore } from "./model/coffeeStore";
 
 function App() {
 	return (
 		<div className="wrapper">
 			<SearchInput />
+			<CategoryPicker />
 			<div style={{ display: "flex" }}>
-				<CoffeList />
+				<CardList />
 				<Cart />
 			</div>
 		</div>
