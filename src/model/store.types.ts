@@ -11,8 +11,7 @@ export type ListState = {
 };
 
 export type ListActions = {
-	getCoffeeList: (params?: GetCoffeeRequestParams) => void;
-
+	getCoffeeList: (params?: GetCoffeeRequestParams) => Promise<CoffeeType[]>;
 	setParams: (params?: GetCoffeeRequestParams) => void;
 };
 

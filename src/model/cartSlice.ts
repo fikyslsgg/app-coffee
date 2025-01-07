@@ -1,8 +1,9 @@
 import axios from "axios";
+import { produce } from "immer";
 import { StateCreator } from "zustand";
 import { BASE_URL } from "../api/CoreApi";
 import { OrderCoffeeRes, OrderItem } from "../types/coffeeTypes";
-import { CartAction, CartState, ListActions, ListState } from "./storetypes";
+import { CartAction, CartState, ListActions, ListState } from "./store.types";
 
 export const cartSlice: StateCreator<
 	ListState & ListActions & CartState & CartAction,
@@ -13,7 +14,6 @@ export const cartSlice: StateCreator<
 	cart: undefined,
 	address: undefined,
 	addToCart: (item) => {
-		const { cart } = get();
 		const { id, name, subTitle } = item;
 
 		const prepearedItem: OrderItem = {
@@ -22,7 +22,19 @@ export const cartSlice: StateCreator<
 			size: "L",
 			quantity: 1,
 		};
-		set({ cart: cart ? [...cart, prepearedItem] : [prepearedItem] });
+		set(
+			produce<CartState>((draft) => {
+				if (!draft.cart) draft.cart = [];
+				const itemIndex = draft.cart.findIndex(
+					(item) => item.id === prepearedItem.id,
+				);
+				if (itemIndex !== -1) {
+					draft.cart[itemIndex].quantity += 1;
+					return;
+				}
+				draft.cart.push(prepearedItem);
+			}),
+		);
 	},
 	orderCoffee: async () => {
 		const { cart, address, clearCart } = get();

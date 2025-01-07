@@ -1,18 +1,22 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 import { CoffeeType, GetCoffeeRequestParams } from "../types/coffeeTypes";
 import { cartSlice } from "./cartSlice";
 import { listSlice } from "./listSlice";
-import { CartAction, CartState, ListActions, ListState } from "./storetypes";
+import { CartAction, CartState, ListActions, ListState } from "./store.types";
 
 export const useCoffeeStore = create<
 	ListState & ListActions & CartState & CartAction
 >()(
 	devtools(
-		persist((...arg) => ({ ...listSlice(...arg), ...cartSlice(...arg) }), {
-			name: "coffeeStore",
-			partialize: (state) => ({ cart: state.cart, address: state.address }),
-		}),
+		persist(
+			immer((...arg) => ({ ...listSlice(...arg), ...cartSlice(...arg) })),
+			{
+				name: "coffeeStore",
+				partialize: (state) => ({ cart: state.cart, address: state.address }),
+			},
+		),
 		{
 			name: "coffeeStore",
 		},
@@ -34,3 +38,6 @@ export const clearCart = () => useCoffeeStore.getState().clearCart();
 
 export const addToCart = (item: CoffeeType) =>
 	useCoffeeStore.getState().addToCart(item);
+
+export const setData = (data?: CoffeeType[]) =>
+	useCoffeeStore.setState({ coffeeList: data });

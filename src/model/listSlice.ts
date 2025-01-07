@@ -1,7 +1,8 @@
 import axios from "axios";
 import { StateCreator } from "zustand";
 import { BASE_URL } from "../api/CoreApi";
-import { CartAction, CartState, ListActions, ListState } from "./storetypes";
+import { CoffeeCategoryEnum } from "../types/coffeeTypes";
+import { CartAction, CartState, ListActions, ListState } from "./store.types";
 
 export const listSlice: StateCreator<
 	ListState & ListActions & CartState & CartAction,
@@ -13,6 +14,7 @@ export const listSlice: StateCreator<
 	controller: undefined,
 	params: {
 		text: undefined,
+		type: CoffeeCategoryEnum.cappuccino,
 	},
 	setParams: (NewParams) => {
 		const { getCoffeeList, params } = get();
@@ -27,14 +29,7 @@ export const listSlice: StateCreator<
 		const newController = new AbortController();
 		set({ controller: newController });
 		const { signal } = newController;
-		try {
-			const { data } = await axios.get(BASE_URL, { params, signal });
-			set({ coffeeList: data });
-		} catch (error) {
-			if (axios.isCancel(error)) {
-				return;
-			}
-			console.log(error);
-		}
+		const { data } = await axios.get(BASE_URL, { params, signal });
+		return data;
 	},
 });
