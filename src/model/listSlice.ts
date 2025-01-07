@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { StateCreator } from "zustand";
 import { BASE_URL } from "../api/CoreApi";
+import { CoffeeCategoryEnum } from "../types/coffeeTypes";
 import { CartAction, CartState, ListActions, ListState } from "./storetypes";
 
 export const listSlice: StateCreator<
@@ -13,6 +14,7 @@ export const listSlice: StateCreator<
 	controller: undefined,
 	params: {
 		text: undefined,
+		type: CoffeeCategoryEnum.cappuccino,
 	},
 	setParams: (NewParams) => {
 		const { getCoffeeList, params } = get();
@@ -34,7 +36,9 @@ export const listSlice: StateCreator<
 			if (axios.isCancel(error)) {
 				return;
 			}
-			console.log(error);
+			if (error instanceof AxiosError) {
+				console.log(error);
+			}
 		}
 	},
 });
