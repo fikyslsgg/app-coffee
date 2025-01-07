@@ -1,8 +1,8 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { StateCreator } from "zustand";
 import { BASE_URL } from "../api/CoreApi";
 import { CoffeeCategoryEnum } from "../types/coffeeTypes";
-import { CartAction, CartState, ListActions, ListState } from "./storetypes";
+import { CartAction, CartState, ListActions, ListState } from "./storeTypes";
 
 export const listSlice: StateCreator<
 	ListState & ListActions & CartState & CartAction,
@@ -29,16 +29,7 @@ export const listSlice: StateCreator<
 		const newController = new AbortController();
 		set({ controller: newController });
 		const { signal } = newController;
-		try {
-			const { data } = await axios.get(BASE_URL, { params, signal });
-			set({ coffeeList: data });
-		} catch (error) {
-			if (axios.isCancel(error)) {
-				return;
-			}
-			if (error instanceof AxiosError) {
-				console.log(error);
-			}
-		}
+		const { data } = await axios.get(BASE_URL, { params, signal });
+		return data;
 	},
 });

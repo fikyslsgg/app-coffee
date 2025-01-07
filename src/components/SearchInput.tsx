@@ -1,6 +1,7 @@
 import { Input } from "antd";
 import { useEffect } from "react";
 import { useShallow } from "zustand/shallow";
+import { useCastomQuery } from "../helpers/useCastomQuery";
 import { useUrlParamsStore } from "../helpers/useUrlStorage";
 import { getCoffeeList, setParams, useCoffeeStore } from "../model/coffeeStore";
 import { CoffeeCategoryEnum } from "../types/coffeeTypes";
@@ -13,6 +14,7 @@ export const SearchInput = () => {
 	}, [params]);
 
 	useUrlParamsStore(params, setParams);
+	useCastomQuery(params);
 
 	return (
 		<Input

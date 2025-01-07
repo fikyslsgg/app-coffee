@@ -3,7 +3,7 @@ import { devtools, persist } from "zustand/middleware";
 import { CoffeeType, GetCoffeeRequestParams } from "../types/coffeeTypes";
 import { cartSlice } from "./cartSlice";
 import { listSlice } from "./listSlice";
-import { CartAction, CartState, ListActions, ListState } from "./storetypes";
+import { CartAction, CartState, ListActions, ListState } from "./storeTypes";
 
 export const useCoffeeStore = create<
 	ListState & ListActions & CartState & CartAction
@@ -34,3 +34,6 @@ export const clearCart = () => useCoffeeStore.getState().clearCart();
 
 export const addToCart = (item: CoffeeType) =>
 	useCoffeeStore.getState().addToCart(item);
+
+export const setData = (data?: CoffeeType[]) =>
+	useCoffeeStore.setState({ coffeeList: data });

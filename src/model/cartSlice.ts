@@ -2,7 +2,7 @@ import axios from "axios";
 import { StateCreator } from "zustand";
 import { BASE_URL } from "../api/CoreApi";
 import { OrderCoffeeRes, OrderItem } from "../types/coffeeTypes";
-import { CartAction, CartState, ListActions, ListState } from "./storetypes";
+import { CartAction, CartState, ListActions, ListState } from "./storeTypes";
 
 export const cartSlice: StateCreator<
 	ListState & ListActions & CartState & CartAction,
