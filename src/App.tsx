@@ -1,13 +1,14 @@
 import "./App.css";
+
 import { CardList } from "./components/CardList/CardList";
-import { Header } from "./components/Header/Header";
+import { Menu } from "./components/Menu/Menu";
 import { SearchInput } from "./components/SearchInput/SearchInput";
 
 function App() {
 	return (
 		<div className="wrapper">
 			<SearchInput />
-			<Header />
+			<Menu />
 			<div className="container">
 				<CardList />
 			</div>
