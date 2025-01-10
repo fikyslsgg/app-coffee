@@ -1,5 +1,6 @@
 .wrapper {
 	display: flex;
+	max-width: 900px;
 	flex-direction: column;
 	gap: 16px;
 	padding: 50px;
@@ -16,16 +17,25 @@
 .cardsContainer {
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(3, minmax(300px, 1fr));
-	gap: 24px;
-	padding: 24px;
+	grid-template-columns: repeat(3, minmax(200px, 1fr));
+	gap: 10px;
 }
 
 .cart {
 	display: flex;
 	flex-direction: column;
-	width: 500px;
+	width: 100%;
 	min-height: 100%;
 	padding: 8px;
 	gap: 16px;
+}
+
+.container {
+	display: flex;
+	gap: 10px;
+}
+
+.category {
+	display: flex;
+	gap: 10px;
 }

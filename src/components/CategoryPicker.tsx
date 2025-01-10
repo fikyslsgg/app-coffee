@@ -6,7 +6,7 @@ import { CoffeeCategoryEnum } from "../types/coffeeTypes";
 export const CategoryPicker = () => {
 	const [params] = useCoffeeStore(useShallow((state) => [state.params]));
 	return (
-		<div>
+		<div className="category">
 			{Object.keys(CoffeeCategoryEnum).map((key) => (
 				<Button
 					key={key}

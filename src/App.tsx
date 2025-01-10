@@ -9,7 +9,7 @@ function App() {
 		<div className="wrapper">
 			<SearchInput />
 			<CategoryPicker />
-			<div style={{ display: "flex" }}>
+			<div className="container">
 				<CardList />
 				<Cart />
 			</div>
