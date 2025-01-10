@@ -21,15 +21,17 @@ export const Cart = () => {
 					{cart.map((item) => (
 						<span key={item.id}>{`${item.name} — ${item.quantity} шт`}</span>
 					))}
-					<Input
-						placeholder="адрес"
-						value={address}
-						onChange={(e) => setAddress(e.target.value)}
-					/>
-					<Button onClick={orderCoffee} type="primary" disabled={!address}>
-						Сделать заказ
-					</Button>
-					<Button onClick={clearCart}>Очистить корзину</Button>
+					<div className={styles.cartDesc}>
+						<Input
+							placeholder="адрес"
+							value={address}
+							onChange={(e) => setAddress(e.target.value)}
+						/>
+						<Button onClick={orderCoffee} type="primary" disabled={!address}>
+							Сделать заказ
+						</Button>
+						<Button onClick={clearCart}>Очистить корзину</Button>
+					</div>
 				</>
 			) : (
 				<span>Добавьте напиток</span>

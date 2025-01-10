@@ -1,8 +1,23 @@
 .cart {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 500px;
 	min-height: 100%;
 	padding: 8px;
 	gap: 16px;
+}
+
+.cartDesc {
+	font-family: inherit;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.cartDesc button {
+	font-family: inherit;
+}
+
+.cartDesc input {
+	font-family: inherit;
 }

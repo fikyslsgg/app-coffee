@@ -2,3 +2,7 @@
 	display: flex;
 	gap: 10px;
 }
+
+.category button {
+	font-family: var(--font);
+}

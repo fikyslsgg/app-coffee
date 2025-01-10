@@ -8,7 +8,7 @@ export const Menu = () => {
 	const [cart] = useCoffeeStore(useShallow((state) => [state.cart]));
 
 	return (
-		<div className={styles.header}>
+		<div className={styles.menu}>
 			<CategoryPicker />
 			<NavLink to="/cart">
 				Корзина {cart && cart.length > 0 && <span>{cart.length}</span>}

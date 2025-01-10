@@ -9,6 +9,7 @@ import {
 	useCoffeeStore,
 } from "../../model/coffeeStore";
 import { CoffeeCategoryEnum } from "../../types/coffeeTypes";
+import styles from "./SearchInput.module.css";
 
 export const SearchInput = () => {
 	const [params] = useCoffeeStore(useShallow((state) => [state.params]));
@@ -22,6 +23,7 @@ export const SearchInput = () => {
 
 	return (
 		<Input
+			className={styles.searchInput}
 			value={params?.text}
 			onChange={(e) =>
 				setParams({

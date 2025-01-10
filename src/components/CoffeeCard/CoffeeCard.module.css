@@ -5,3 +5,23 @@
 	gap: 8px;
 	padding: 16px;
 }
+
+.coffeeCard {
+	font-family: inherit;
+	display: flex;
+	flex-direction: column;
+}
+
+.coffeeCard button {
+	font-family: inherit;
+}
+.coffeeDesc {
+	display: flex;
+	flex-direction: column;
+}
+
+.coffeeTag {
+	color: purple;
+	margin-top: 12px;
+	font-family: inherit;
+}
