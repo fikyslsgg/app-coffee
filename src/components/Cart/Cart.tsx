@@ -23,7 +23,7 @@ export const Cart = () => {
 					))}
 					<div className={styles.cartDesc}>
 						<Input
-							placeholder="адрес"
+							placeholder="Адрес"
 							value={address}
 							onChange={(e) => setAddress(e.target.value)}
 						/>

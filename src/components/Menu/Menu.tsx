@@ -10,8 +10,10 @@ export const Menu = () => {
 	return (
 		<div className={styles.menu}>
 			<CategoryPicker />
-			<NavLink to="/cart">
-				Корзина {cart && cart.length > 0 && <span>{cart.length}</span>}
+			<NavLink to="/cart" className={styles.cartIcon}>
+				<span>Корзина</span>
+				<img src="/public/icon/cart-icon.svg" alt="cart-icon" />
+				{cart && cart.length > 0 && <span>{cart.length}</span>}
 			</NavLink>
 		</div>
 	);
