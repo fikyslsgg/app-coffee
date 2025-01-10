@@ -5,7 +5,8 @@ import {
 	orderCoffee,
 	setAddress,
 	useCoffeeStore,
-} from "../model/coffeeStore";
+} from "../../model/coffeeStore";
+import styles from "./Cart.module.css";
 
 export const Cart = () => {
 	const [cart, address] = useCoffeeStore(
@@ -13,7 +14,7 @@ export const Cart = () => {
 	);
 
 	return (
-		<aside className="cart">
+		<aside className={styles.cart}>
 			<h1>Заказ</h1>
 			{cart && cart.length > 0 ? (
 				<>

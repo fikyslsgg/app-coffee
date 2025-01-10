@@ -1,7 +1,7 @@
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Button, Card, Rate, Tag } from "antd";
-import { addToCart } from "../model/coffeeStore";
-import { CoffeeType } from "../types/coffeeTypes";
+import { addToCart } from "../../model/coffeeStore";
+import { CoffeeType } from "../../types/coffeeTypes";
 
 export const CoffeeCard = ({ coffee }: { coffee: CoffeeType }) => {
 	return (

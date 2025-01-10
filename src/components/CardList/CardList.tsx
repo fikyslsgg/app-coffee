@@ -1,6 +1,7 @@
 import { useShallow } from "zustand/shallow";
-import { useCoffeeStore } from "../model/coffeeStore";
-import { CoffeeCard } from "./CoffeeCard";
+import { useCoffeeStore } from "../../model/coffeeStore";
+import { CoffeeCard } from "../CoffeeCard/CoffeeCard";
+import styles from "./CardList.module.css";
 
 export const CardList = () => {
 	const [coffeeList] = useCoffeeStore(
@@ -8,7 +9,7 @@ export const CardList = () => {
 	);
 
 	return (
-		<div className="cardsContainer">
+		<div className={styles.cardsContainer}>
 			{coffeeList && coffeeList.map((coffee) => <CoffeeCard coffee={coffee} />)}
 		</div>
 	);
