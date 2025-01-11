@@ -10,7 +10,10 @@ export const CardList = () => {
 
 	return (
 		<div className={styles.cardsContainer}>
-			{coffeeList && coffeeList.map((coffee) => <CoffeeCard coffee={coffee} />)}
+			{coffeeList &&
+				coffeeList.map((coffee) => (
+					<CoffeeCard key={coffee.id} coffee={coffee} />
+				))}
 		</div>
 	);
 };

@@ -8,7 +8,6 @@ export const CoffeeCard = ({ coffee }: { coffee: CoffeeType }) => {
 	return (
 		<Card
 			className={styles.coffeeCard}
-			key={coffee.id}
 			cover={<img src={coffee.image} alt={coffee.name} />}
 			actions={[
 				<Button

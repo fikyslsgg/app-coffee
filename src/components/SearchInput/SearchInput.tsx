@@ -1,37 +1,22 @@
 import { Input } from "antd";
-import { useEffect } from "react";
-import { useShallow } from "zustand/shallow";
-import { useCastomQuery } from "../../helpers/useCastomQuery";
 import { useUrlParamsStore } from "../../helpers/useUrlStorage";
-import {
-	getCoffeeList,
-	setParams,
-	useCoffeeStore,
-} from "../../model/coffeeStore";
-import { CoffeeCategoryEnum } from "../../types/coffeeTypes";
-import styles from "./SearchInput.module.css";
+import { setParams, useCoffeeStore } from "../../model/coffeeStore";
+
+import { useShallow } from "zustand/react/shallow";
+
+import { useCustomQuery } from "../../helpers/useCastomQuery";
 
 export const SearchInput = () => {
-	const [params] = useCoffeeStore(useShallow((state) => [state.params]));
-
-	useEffect(() => {
-		getCoffeeList(params);
-	}, [params]);
+	const [params] = useCoffeeStore(useShallow((s) => [s.params]));
 
 	useUrlParamsStore(params, setParams);
-	useCastomQuery(params);
+	useCustomQuery(params);
 
 	return (
 		<Input
-			className={styles.searchInput}
-			value={params?.text}
-			onChange={(e) =>
-				setParams({
-					text: e.target.value,
-					type: CoffeeCategoryEnum.cappuccino,
-				})
-			}
 			placeholder="Search"
+			value={params?.text}
+			onChange={(e) => setParams({ text: e.target.value })}
 		/>
 	);
 };

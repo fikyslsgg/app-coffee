@@ -10,3 +10,15 @@
 	align-items: center;
 	gap: 10px;
 }
+
+.cartCount {
+	background-color: black;
+	color: white;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-wrap: wrap;
+}
