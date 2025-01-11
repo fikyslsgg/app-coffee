@@ -1,35 +1,43 @@
 import axios from "axios";
 import { StateCreator } from "zustand";
 import { BASE_URL } from "../api/CoreApi";
-import { CoffeeCategoryEnum } from "../types/coffeeTypes";
-import { CartAction, CartState, ListActions, ListState } from "./store.types";
+import { CoffeeQueryParams, CoffeeType } from "../types/coffeeTypes";
+import {
+	CoffeeCartActions,
+	CoffeeCartState,
+	CoffeeListActions,
+	CoffeeListState,
+} from "./storeTypes";
 
 export const listSlice: StateCreator<
-	ListState & ListActions & CartState & CartAction,
+	CoffeeListActions & CoffeeListState & CoffeeCartActions & CoffeeCartState,
 	[["zustand/devtools", never], ["zustand/persist", unknown]],
-	[["zustand/devtools", never], ["zustand/persist", unknown]],
-	ListState & ListActions
+	[["zustand/devtools", never]],
+	CoffeeListActions & CoffeeListState
 > = (set, get) => ({
 	coffeeList: undefined,
 	controller: undefined,
-	params: {
-		text: undefined,
-		type: CoffeeCategoryEnum.cappuccino,
+	params: { text: undefined, type: undefined },
+
+	setParams: (params) => {
+		set({ params: { ...get().params, ...params } });
 	},
-	setParams: (NewParams) => {
-		const { getCoffeeList, params } = get();
-		set({ params: { ...params, ...NewParams } }, false, "setParams");
-		getCoffeeList(params);
-	},
-	getCoffeeList: async (params) => {
+
+	getCoffeeList: async (params?: CoffeeQueryParams) => {
 		const { controller } = get();
+
 		if (controller) {
 			controller.abort();
 		}
+
 		const newController = new AbortController();
 		set({ controller: newController });
 		const { signal } = newController;
-		const { data } = await axios.get(BASE_URL, { params, signal });
+		const { data } = await axios.get<CoffeeType[]>(BASE_URL, {
+			params,
+			signal,
+		});
+		set({ coffeeList: data });
 		return data;
 	},
 });

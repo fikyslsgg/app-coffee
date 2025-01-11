@@ -1,14 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { getCoffeeList, setData } from "../model/coffeeStore";
-import { GetCoffeeRequestParams } from "../types/coffeeTypes";
+import { getCoffeeList } from "../model/coffeeStore";
 
-export const useCastomQuery = (params: GetCoffeeRequestParams) => {
-	const { data, status } = useQuery({
-		queryKey: ["coffeeList", params],
-		queryFn: () => getCoffeeList(),
+import { CoffeeQueryParams } from "../types/coffeeTypes";
+
+export const useCustomQuery = (params: CoffeeQueryParams) => {
+	const { status, isLoading } = useQuery({
+		queryKey: ["params", params],
+		queryFn: () => getCoffeeList(params),
 	});
-	useEffect(() => {
-		setData(data);
-	}, [data, status]);
+
+	return { status, isLoading };
 };
