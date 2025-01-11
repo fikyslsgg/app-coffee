@@ -3,6 +3,7 @@ export enum CoffeeTypeEnum {
 	latte = "latte",
 	macchiato = "macchiato",
 	americano = "americano",
+	all = "",
 }
 
 export type CoffeeQueryParams = {
