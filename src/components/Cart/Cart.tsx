@@ -23,7 +23,9 @@ export const Cart = () => {
 					{cart.map((item) => (
 						<div className={styles.cartItem}>
 							<div key={item.id}>{`${item.name} — ${item.quantity} шт`}</div>
-							<Button onClick={() => deleteToCart(item.id)}>x</Button>
+							<Button onClick={() => deleteToCart(item.id)}>
+								<img src="/public/icon/delete-icon.svg" alt="delete-icon" />
+							</Button>
 						</div>
 					))}
 					<div className={styles.cartDesc}>
