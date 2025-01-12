@@ -7,6 +7,7 @@ import {
 	useCoffeeStore,
 } from "../../model/coffeeStore";
 import styles from "./Cart.module.css";
+import { OrderLogo } from "../OrderLogo/OrderLogo";
 
 export const Cart = () => {
 	const [cart, address] = useCoffeeStore(
@@ -15,11 +16,13 @@ export const Cart = () => {
 
 	return (
 		<aside className={styles.cart}>
-			<h1>Заказ</h1>
+			<OrderLogo />
 			{cart && cart.length > 0 ? (
 				<>
 					{cart.map((item) => (
-						<span key={item.id}>{`${item.name} — ${item.quantity} шт`}</span>
+						<div>
+							<div key={item.id}>{`${item.name} — ${item.quantity} шт`}</div>
+						</div>
 					))}
 					<div className={styles.cartDesc}>
 						<Input
