@@ -2,12 +2,13 @@ import { Button, Input } from "antd";
 import { useShallow } from "zustand/shallow";
 import {
 	clearCart,
+	deleteToCart,
 	orderCoffee,
 	setAddress,
 	useCoffeeStore,
 } from "../../model/coffeeStore";
-import styles from "./Cart.module.css";
 import { OrderLogo } from "../OrderLogo/OrderLogo";
+import styles from "./Cart.module.css";
 
 export const Cart = () => {
 	const [cart, address] = useCoffeeStore(
@@ -20,8 +21,9 @@ export const Cart = () => {
 			{cart && cart.length > 0 ? (
 				<>
 					{cart.map((item) => (
-						<div>
+						<div className={styles.cartItem}>
 							<div key={item.id}>{`${item.name} — ${item.quantity} шт`}</div>
+							<Button onClick={() => deleteToCart(item.id)}>x</Button>
 						</div>
 					))}
 					<div className={styles.cartDesc}>
