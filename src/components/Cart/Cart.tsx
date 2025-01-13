@@ -19,10 +19,12 @@ export const Cart = () => {
 		<aside className={styles.cart}>
 			<OrderLogo />
 			{cart && cart.length > 0 ? (
-				<>
-					{cart.map((item) => (
+				<div className={styles.cartWrapper}>
+					{cart.map((item, index) => (
 						<div className={styles.cartItem}>
-							<div key={item.id}>{`${item.name} — ${item.quantity} шт`}</div>
+							<div
+								key={item.id}
+							>{`${index + 1}. ${item.name} — ${item.quantity} шт`}</div>
 							<Button onClick={() => deleteToCart(item.id)}>
 								<img src="/public/icon/delete-icon.svg" alt="delete-icon" />
 							</Button>
@@ -39,7 +41,7 @@ export const Cart = () => {
 						</Button>
 						<Button onClick={clearCart}>Очистить корзину</Button>
 					</div>
-				</>
+				</div>
 			) : (
 				<span>Добавьте напиток</span>
 			)}
