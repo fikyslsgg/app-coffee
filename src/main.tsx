@@ -1,17 +1,23 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { StrictMode } from "react";
+import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.tsx";
+
+import { Spin } from "antd";
 import { Cart } from "./components/Cart/Cart.tsx";
 import "./index.css";
 
 const queryClient = new QueryClient();
+const App = lazy(() => import("./App.tsx"));
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <App />,
+		element: (
+			<Suspense fallback={<Spin size="large" />}>
+				<App />
+			</Suspense>
+		),
 	},
 	{
 		path: "/cart",

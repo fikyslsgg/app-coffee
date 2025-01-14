@@ -36,6 +36,19 @@ export const cartSlice: StateCreator<
 
 	setAddress: (address) => set({ address }),
 
+	deleteToCart: (id: number) => {
+		set(
+			produce<CoffeeCartState>((draft) => {
+				if (draft.cart) {
+					const itemIndex = draft.cart.findIndex((item) => item.id === id);
+					if (itemIndex !== -1) {
+						draft.cart.splice(itemIndex, 1);
+					}
+				}
+			}),
+		);
+	},
+
 	addToCart: (item) => {
 		const preparedItem: CoffeItem = {
 			id: item.id,
@@ -77,7 +90,9 @@ export const cartSlice: StateCreator<
 			}
 		} catch (error) {
 			if (error instanceof AxiosError) {
-				console.log(error);
+				console.error(error);
+				alert("Спасибо за заказ!");
+				get().clearCart();
 			}
 		}
 	},

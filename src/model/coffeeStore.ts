@@ -45,3 +45,6 @@ export const clearCart = () => useCoffeeStore.getState().clearCart();
 
 export const setParams = (params: CoffeeQueryParams) =>
 	useCoffeeStore.getState().setParams(params);
+
+export const deleteToCart = (id: number) =>
+	useCoffeeStore.getState().deleteToCart(id);

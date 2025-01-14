@@ -10,6 +10,7 @@ export type CoffeeCartActions = {
 	addToCart: (item: CoffeeType) => void;
 	orderCoffee: () => void;
 	clearCart: () => void;
+	deleteToCart: (id: number) => void;
 };
 
 export type CoffeeListState = {

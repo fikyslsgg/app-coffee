@@ -7,6 +7,20 @@
 	gap: 16px;
 }
 
+.cartWrapper {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.cartItem {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	justify-content: space-between;
+}
+
 .cartDesc {
 	font-family: inherit;
 	display: flex;
@@ -20,4 +34,8 @@
 
 .cartDesc input {
 	font-family: inherit;
+}
+
+.text {
+	text-align: center;
 }
