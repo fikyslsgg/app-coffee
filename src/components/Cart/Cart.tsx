@@ -34,16 +34,26 @@ export const Cart = () => {
 						<Input
 							placeholder="введите адрес"
 							value={address}
+							size="large"
 							onChange={(e) => setAddress(e.target.value)}
 						/>
-						<Button onClick={orderCoffee} type="primary" disabled={!address}>
+						<Button
+							size="large"
+							onClick={orderCoffee}
+							type="primary"
+							disabled={!address}
+						>
 							Сделать заказ
 						</Button>
-						<Button onClick={clearCart}>Очистить корзину</Button>
+						<Button size="large" onClick={clearCart}>
+							Очистить корзину
+						</Button>
 					</div>
 				</div>
 			) : (
-				<span>Добавьте напиток</span>
+				<span className={styles.text}>
+					Ваша корзина пуста, добавьте напиток &#128521;
+				</span>
 			)}
 		</aside>
 	);

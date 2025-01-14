@@ -35,3 +35,7 @@
 .cartDesc input {
 	font-family: inherit;
 }
+
+.text {
+	text-align: center;
+}
