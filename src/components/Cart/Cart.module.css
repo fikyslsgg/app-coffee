@@ -1,0 +1,41 @@
+.cart {
+	display: flex;
+	flex-direction: column;
+	width: 500px;
+	min-height: 100%;
+	padding: 8px;
+	gap: 16px;
+}
+
+.cartWrapper {
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.cartItem {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	justify-content: space-between;
+}
+
+.cartDesc {
+	font-family: inherit;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.cartDesc button {
+	font-family: inherit;
+}
+
+.cartDesc input {
+	font-family: inherit;
+}
+
+.text {
+	text-align: center;
+}

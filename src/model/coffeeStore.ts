@@ -1,17 +1,24 @@
 import { create } from "zustand";
+import { CoffeeQueryParams, CoffeeType } from "../types/coffeeTypes";
+
 import { devtools, persist } from "zustand/middleware";
+
 import { immer } from "zustand/middleware/immer";
-import { CoffeeType, GetCoffeeRequestParams } from "../types/coffeeTypes";
 import { cartSlice } from "./cartSlice";
 import { listSlice } from "./listSlice";
-import { CartAction, CartState, ListActions, ListState } from "./store.types";
+import {
+	CoffeeCartActions,
+	CoffeeCartState,
+	CoffeeListActions,
+	CoffeeListState,
+} from "./storeTypes";
 
 export const useCoffeeStore = create<
-	ListState & ListActions & CartState & CartAction
+	CoffeeListActions & CoffeeListState & CoffeeCartActions & CoffeeCartState
 >()(
 	devtools(
 		persist(
-			immer((...arg) => ({ ...listSlice(...arg), ...cartSlice(...arg) })),
+			immer((...args) => ({ ...listSlice(...args), ...cartSlice(...args) })),
 			{
 				name: "coffeeStore",
 				partialize: (state) => ({ cart: state.cart, address: state.address }),
@@ -23,21 +30,21 @@ export const useCoffeeStore = create<
 	),
 );
 
-export const getCoffeeList = (params?: GetCoffeeRequestParams) =>
+export const getCoffeeList = (params?: CoffeeQueryParams) =>
 	useCoffeeStore.getState().getCoffeeList(params);
-
-export const setParams = (params?: GetCoffeeRequestParams) =>
-	useCoffeeStore.getState().setParams(params);
-
-export const setAddress = (address: string) =>
-	useCoffeeStore.getState().setAddress(address);
-
-export const orderCoffee = () => useCoffeeStore.getState().orderCoffee();
-
-export const clearCart = () => useCoffeeStore.getState().clearCart();
 
 export const addToCart = (item: CoffeeType) =>
 	useCoffeeStore.getState().addToCart(item);
 
-export const setData = (data?: CoffeeType[]) =>
-	useCoffeeStore.setState({ coffeeList: data });
+export const orderCoffee = () => useCoffeeStore.getState().orderCoffee();
+
+export const setAddress = (address: string) =>
+	useCoffeeStore.getState().setAddress(address);
+
+export const clearCart = () => useCoffeeStore.getState().clearCart();
+
+export const setParams = (params: CoffeeQueryParams) =>
+	useCoffeeStore.getState().setParams(params);
+
+export const deleteToCart = (id: number) =>
+	useCoffeeStore.getState().deleteToCart(id);

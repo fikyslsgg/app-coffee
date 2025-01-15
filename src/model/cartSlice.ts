@@ -1,60 +1,99 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { produce } from "immer";
 import { StateCreator } from "zustand";
 import { BASE_URL } from "../api/CoreApi";
-import { OrderCoffeeRes, OrderItem } from "../types/coffeeTypes";
-import { CartAction, CartState, ListActions, ListState } from "./store.types";
+import {
+	CoffeItem,
+	CoffeSizeEnum,
+	OrderCoffeeReq,
+	OrderCoffeeRes,
+} from "../types/coffeeTypes";
+import {
+	CoffeeCartActions,
+	CoffeeCartState,
+	CoffeeListActions,
+	CoffeeListState,
+} from "./storeTypes";
 
 export const cartSlice: StateCreator<
-	ListState & ListActions & CartState & CartAction,
-	[["zustand/devtools", never], ["zustand/persist", unknown]],
-	[["zustand/devtools", never], ["zustand/persist", unknown]],
-	CartState & CartAction
+	CoffeeListActions & CoffeeListState & CoffeeCartActions & CoffeeCartState,
+	[
+		["zustand/devtools", never],
+		["zustand/persist", unknown],
+		["zustand/immer", unknown],
+	],
+	[
+		["zustand/devtools", never],
+		["zustand/persist", unknown],
+		["zustand/immer", unknown],
+	],
+	CoffeeCartState & CoffeeCartActions
 > = (set, get) => ({
 	cart: undefined,
 	address: undefined,
-	addToCart: (item) => {
-		const { id, name, subTitle } = item;
 
-		const prepearedItem: OrderItem = {
-			id,
-			name: `${name} ${subTitle}`,
-			size: "L",
-			quantity: 1,
-		};
+	clearCart: () => set({ cart: undefined }),
+
+	setAddress: (address) => set({ address }),
+
+	deleteToCart: (id: number) => {
 		set(
-			produce<CartState>((draft) => {
+			produce<CoffeeCartState>((draft) => {
+				if (draft.cart) {
+					const itemIndex = draft.cart.findIndex((item) => item.id === id);
+					if (itemIndex !== -1) {
+						draft.cart.splice(itemIndex, 1);
+					}
+				}
+			}),
+		);
+	},
+
+	addToCart: (item) => {
+		const preparedItem: CoffeItem = {
+			id: item.id,
+			name: `${item.name} ${item.subTitle}`,
+			quantity: 1,
+			size: CoffeSizeEnum.M,
+		};
+
+		set(
+			produce<CoffeeCartState>((draft) => {
 				if (!draft.cart) draft.cart = [];
+
 				const itemIndex = draft.cart.findIndex(
-					(item) => item.id === prepearedItem.id,
+					(cartItem) => cartItem.id === preparedItem.id,
 				);
 				if (itemIndex !== -1) {
 					draft.cart[itemIndex].quantity += 1;
 					return;
 				}
-				draft.cart.push(prepearedItem);
+				draft.cart.push(preparedItem);
 			}),
 		);
 	},
+
 	orderCoffee: async () => {
-		const { cart, address, clearCart } = get();
+		const { cart, address } = get();
+		const order: OrderCoffeeReq = {
+			address: address!,
+			orderItems: cart!,
+		};
 		try {
-			const { data } = await axios.post<OrderCoffeeRes>(BASE_URL + "/order", {
-				address,
-				orderItems: cart,
-			});
+			const { data } = await axios.post<OrderCoffeeRes>(
+				BASE_URL + "order",
+				order,
+			);
 			if (data.success) {
 				alert(data.message);
-				clearCart();
+				get().clearCart();
 			}
 		} catch (error) {
-			console.log(error);
+			if (error instanceof AxiosError) {
+				console.error(error);
+				alert("Спасибо за заказ!");
+				get().clearCart();
+			}
 		}
-	},
-	clearCart: () => {
-		set({ cart: undefined });
-	},
-	setAddress: (address) => {
-		set({ address });
 	},
 });

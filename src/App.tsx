@@ -1,17 +1,17 @@
 import "./App.css";
-import { CardList } from "./components/CardList";
-import { Cart } from "./components/Cart";
-import { CategoryPicker } from "./components/CategoryPicker";
-import { SearchInput } from "./components/SearchInput";
+import { CardList } from "./components/CardList/CardList";
+import { Logo } from "./components/Logo/Logo";
+import { Menu } from "./components/Menu/Menu";
+import { SearchInput } from "./components/SearchInput/SearchInput";
 
 function App() {
 	return (
 		<div className="wrapper">
+			<Logo />
 			<SearchInput />
-			<CategoryPicker />
+			<Menu />
 			<div className="container">
 				<CardList />
-				<Cart />
 			</div>
 		</div>
 	);

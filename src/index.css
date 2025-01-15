@@ -1,3 +1,7 @@
+:root {
+	--font: "Shantell Sans", serif;
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -34,6 +38,7 @@ body {
 	min-width: 320px;
 	min-height: 100vh;
 	font-size: 16px;
+	font-family: var(--font);
 	line-height: 1.5;
 	overflow-x: hidden;
 }
@@ -58,11 +63,14 @@ h4 {
 }
 
 /* A elements that don't have a class get default styles */
-a:not([class]) {
+
+a {
 	text-decoration-skip-ink: auto;
 	color: currentColor;
+	text-decoration: none;
+	font-style: none;
+	color: currentColor;
 }
-
 /* Make images easier to work with */
 img,
 picture {
