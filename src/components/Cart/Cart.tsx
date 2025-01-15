@@ -22,9 +22,15 @@ export const Cart = () => {
 				<div className={styles.cartWrapper}>
 					{cart.map((item, index) => (
 						<div className={styles.cartItem}>
+							<img
+								className={styles.cartItemIcon}
+								src={item.image}
+								alt={item.name}
+							/>
 							<div
 								key={item.id}
-							>{`${index + 1}. ${item.name} — ${item.quantity} шт`}</div>
+							>{` ${index + 1}. ${item.name} — ${item.quantity} шт`}</div>
+
 							<Button onClick={() => deleteToCart(item.id)}>
 								<img src="/public/icon/delete-icon.svg" alt="delete-icon" />
 							</Button>
