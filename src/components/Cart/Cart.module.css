@@ -39,16 +39,37 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-}
-
-.cartDesc button {
-	font-family: inherit;
+	margin-bottom: 50px;
 }
 
 .cartDesc input {
 	font-family: inherit;
+	text-align: center;
 }
 
+.cartDesc button {
+	font-family: inherit;
+	text-align: center;
+}
 .text {
 	text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+	.cart {
+		width: 400px;
+		font-size: 12px;
+	}
+	.cartWrapper {
+		padding: 0 8%;
+	}
+	.cartDesc input {
+		font-size: 12px;
+	}
+	.cartDesc button {
+		font-size: 12px;
+	}
+	.deleteIcon {
+		width: 50px;
+	}
 }
