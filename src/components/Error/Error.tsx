@@ -10,7 +10,7 @@ export const Error = () => {
 				alt="error-icon"
 			/>
 			<div>Ошибка!</div>
-			<NavLink to="/" className={styles.errorLink}>
+			<NavLink to="/app-coffee/" className={styles.errorLink}>
 				Вернуться на главную страницу
 			</NavLink>
 		</div>
