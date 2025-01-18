@@ -3,6 +3,7 @@ import { CoffeItem, CoffeeQueryParams, CoffeeType } from "../types/coffeeTypes";
 export type CoffeeCartState = {
 	cart?: CoffeItem[];
 	address?: string;
+	image?: string;
 };
 
 export type CoffeeCartActions = {
@@ -10,6 +11,7 @@ export type CoffeeCartActions = {
 	addToCart: (item: CoffeeType) => void;
 	orderCoffee: () => void;
 	clearCart: () => void;
+	deleteToCart: (id: number) => void;
 };
 
 export type CoffeeListState = {

@@ -22,6 +22,7 @@ export type CoffeItem = {
 	name: string;
 	size: CoffeSizeEnum;
 	quantity: number;
+	image: string;
 };
 export type OrderCoffeeReq = {
 	address: string;
