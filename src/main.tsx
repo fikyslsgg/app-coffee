@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 const App = lazy(() => import("./App.tsx"));
 const router = createBrowserRouter([
 	{
-		path: "/",
+		path: "/app-coffee/",
 		element: (
 			<Suspense fallback={<Spin size="large" />}>
 				<App />
@@ -21,11 +21,11 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: "/cart",
+		path: "/app-coffee/cart",
 		element: <Cart />,
 	},
 	{
-		path: "/*",
+		path: "/app-coffee/*",
 		element: <Error />,
 	},
 ]);
