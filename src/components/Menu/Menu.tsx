@@ -12,7 +12,10 @@ export const Menu = () => {
 			<CategoryPicker />
 			<NavLink to="/cart" className={styles.cartIcon}>
 				<span>Корзина</span>
-				<img src="/public/icon/cart-icon.svg" alt="cart-icon" />
+				<img
+					src="https://raw.githubusercontent.com/fikyslsgg/app-coffee/9def8d43e6c92a334175025168caa9f726a89417/public/icon/cart-icon.svg"
+					alt="cart-icon"
+				/>
 				{cart && cart.length > 0 && (
 					<span className={styles.cartCount}>{cart.length}</span>
 				)}
