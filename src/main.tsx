@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Spin } from "antd";
 import { Cart } from "./components/Cart/Cart.tsx";
+import { Error } from "./components/Error/Error.tsx";
 import "./index.css";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
 	{
 		path: "/cart",
 		element: <Cart />,
+	},
+	{
+		path: "/*",
+		element: <Error />,
 	},
 ]);
 

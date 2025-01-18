@@ -31,6 +31,7 @@ export const cartSlice: StateCreator<
 > = (set, get) => ({
 	cart: undefined,
 	address: undefined,
+	image: "",
 
 	clearCart: () => set({ cart: undefined }),
 
@@ -55,6 +56,7 @@ export const cartSlice: StateCreator<
 			name: `${item.name} ${item.subTitle}`,
 			quantity: 1,
 			size: CoffeSizeEnum.M,
+			image: item.image,
 		};
 
 		set(

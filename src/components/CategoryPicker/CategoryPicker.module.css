@@ -6,3 +6,15 @@
 .category button {
 	font-family: var(--font);
 }
+
+@media only screen and (max-width: 768px) {
+	.category {
+		flex-wrap: wrap;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.category {
+		justify-content: center;
+	}
+}
