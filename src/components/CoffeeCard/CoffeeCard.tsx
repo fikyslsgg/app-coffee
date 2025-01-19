@@ -8,7 +8,6 @@ export const CoffeeCard = ({ coffee }: { coffee: CoffeeType }) => {
 	return (
 		<Card
 			className={styles.coffeeCard}
-			hoverable={true}
 			cover={<img src={coffee.image} alt={coffee.name} />}
 			actions={[
 				<Button

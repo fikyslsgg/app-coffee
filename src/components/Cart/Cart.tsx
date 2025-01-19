@@ -1,5 +1,6 @@
 import { Button, Input } from "antd";
 import { useShallow } from "zustand/shallow";
+import { URL } from "../../api/CoreApi";
 import {
 	clearCart,
 	deleteToCart,
@@ -36,10 +37,7 @@ export const Cart = () => {
 								className={styles.deleteIcon}
 								onClick={() => deleteToCart(item.id)}
 							>
-								<img
-									src="https://raw.githubusercontent.com/fikyslsgg/app-coffee/9def8d43e6c92a334175025168caa9f726a89417/public/icon/delete-icon.svg"
-									alt="delete-icon"
-								/>
+								<img src={`${URL}/delete-icon.svg`} alt="delete-icon" />
 							</Button>
 						</div>
 					))}
