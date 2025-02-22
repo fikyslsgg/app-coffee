@@ -1,50 +1,64 @@
-# React + TypeScript + Vite
+# ☕️ Проект: App-Coffee
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**App-Coffee** — это приложение для заказа кофе, разработанное с использованием современных веб-технологий. Оно предлагает удобный интерфейс для выбора и заказа любимых кофейных напитков.
 
-Currently, two official plugins are available:
+## 🛠️ Используемые технологии
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend:** React
+- **State Management:** Zustand
+- **Bundler:** Vite
+- **Styles:** CSS Modules
 
-## Expanding the ESLint configuration
+## 📦 Функциональность приложения
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Получение товаров через API:** Приложение взаимодействует с внешним API для получения списка доступных напитков.
+  
+- **Корзина заказов:** Пользователи могут добавлять напитки в корзину с помощью Zustand, который управляет состоянием корзины.
 
-- Configure the top-level `parserOptions` property like this:
+- **DevTools для Zustand:** Встроенные инструменты для отладки состояния помогают в разработке и тестировании.
 
-```js
-export default tseslint.config({
-	languageOptions: {
-		// other options...
-		parserOptions: {
-			project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-			tsconfigRootDir: import.meta.dirname,
-		},
-	},
-});
+- **Хранение состояния в LocalStorage:** Состояние корзины сохраняется локально, чтобы пользователи могли продолжить заказ после перезагрузки страницы.
+
+## 📸 Скриншоты
+
+### Главная страница
+
+![Главная страница](./screenshots/homepage.png)
+
+### Страница каталога
+
+![Каталог напитков](./screenshots/catalogue.png)
+
+### Корзина заказов
+
+![Корзина заказов](./screenshots/basket.png)
+
+## 🚀 Запуск проекта
+
+Чтобы запустить проект на своем компьютере, выполните следующие шаги:
+
+1. Клонируйте репозиторий:
+
+```bash
+git clone
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
-
-export default tseslint.config({
-	// Set the react version
-	settings: { react: { version: "18.3" } },
-	plugins: {
-		// Add the react plugin
-		react,
-	},
-	rules: {
-		// other rules...
-		// Enable its recommended rules
-		...react.configs.recommended.rules,
-		...react.configs["jsx-runtime"].rules,
-	},
-});
+2. Установите зависимости:
+   
+```bash
+npm install
 ```
+
+4. Запустите приложение:
+```bash
+npm run dev
+```
+
+Контакты
+Если у вас возникнут вопросы или предложения, пожалуйста, свяжитесь со мной:
+
+Имя: Yury Sidyakin
+Email: yurysidyakin.dev@yandex.ru
+
+Спасибо за интерес к моему проекту!
+   
